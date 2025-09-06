@@ -323,6 +323,10 @@ int main(const int argc, char **argv) {
                     if (errno == EAGAIN || errno == EWOULDBLOCK) {
                         break;
                     }
+                    if (errno == ENODEV) {
+                        fprintf(stderr, "read: No such device\n");
+                        return 1;
+                    }
                     perror("read");
                     break;
                 } else if (n == 0) {
